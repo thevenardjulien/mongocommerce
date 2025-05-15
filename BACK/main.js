@@ -10,6 +10,7 @@ import { createProducts } from "./seeders/productsSeeders.js";
 
 // Import des routeurs
 import { apiRoutes } from "./routes/apiRoute.js";
+import { authRoutes } from "./routes/authRoutes.js";
 import { productRoutes } from "./routes/productRoutes.js";
 
 const url = process.env.DB_URL || "mongodb://localhost:27017/";
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/api", apiRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 
 // Gestion des erreurs

@@ -3,7 +3,7 @@ export default function Header() {
         <header className="flex items-center">
             <div className="py-6 px-4 sm:px-6 lg:px-8 flex-1">
                 <h1 className="text-3xl font-bold">
-                    <span>MongoCommerce</span>
+                    <a href="/">MongoCommerce</a>
                 </h1>
             </div>
             <nav className="flex-1">
@@ -21,6 +21,24 @@ export default function Header() {
                                 className="text-gray-900 hover:text-gray-500"
                             >
                                 Products
+                            </a>
+                            <a
+                                href="/login"
+                                className="text-gray-900 hover:text-gray-500"
+                            >
+                                Login
+                            </a>
+                            <a
+                                href="/register"
+                                className="text-gray-900 hover:text-gray-500"
+                            >
+                                Register
+                            </a>
+                            <a
+                                href="#"
+                                className="text-gray-900 hover:text-gray-500"
+                            >
+                                Logout
                             </a>
                         </nav>
                     </div>
