@@ -5,6 +5,7 @@ import { dirname, sep } from "path";
 import { fileURLToPath } from "url";
 import process from "process";
 import { createAdminUser } from "./seeders/createAdminUser.js";
+import { createUsers } from "./seeders/createUsers.js";
 
 // Import des routeurs
 
@@ -17,7 +18,11 @@ async function main() {
 
 main()
   .then(() => console.log(`Connected to MongoDB database : ${dbName}`))
-  .then(() => createAdminUser())
+  // Seeders
+  .then(() => {
+    createAdminUser();
+    createUsers();
+  })
   .catch((err) => console.log(err));
 
 const app = express();
@@ -33,7 +38,6 @@ const cfg = {
 };
 
 // Cors
-
 app.use(cors());
 
 // Static files
