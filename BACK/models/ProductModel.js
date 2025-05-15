@@ -1,3 +1,4 @@
+import { create } from "domain";
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
@@ -44,6 +45,10 @@ const ProductSchema = new Schema({
   numReviews: {
     type: Number,
     required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 

@@ -6,8 +6,11 @@ import { fileURLToPath } from "url";
 import process from "process";
 import { createAdminUser } from "./seeders/createAdminUser.js";
 import { createUsers } from "./seeders/createUsers.js";
+import { createProducts } from "./seeders/productsSeeders.js";
 
 // Import des routeurs
+import { apiRoutes } from "./routes/apiRoute.js";
+import { productRoutes } from "./routes/productRoutes.js";
 
 const url = process.env.DB_URL || "mongodb://localhost:27017/";
 const dbName = process.env.DB_NAME || "mongocommerceapi";
@@ -22,6 +25,7 @@ main()
   .then(() => {
     createAdminUser();
     createUsers();
+    createProducts();
   })
   .catch((err) => console.log(err));
 
@@ -37,16 +41,11 @@ const cfg = {
   },
 };
 
-// Cors
+// Cors, Static files, Middlewares de base
 app.use(cors());
-
-// Static files
 app.use(express.static(cfg.dir.public));
-
-// Middlewares de base
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 // Debug middleware
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
@@ -54,9 +53,8 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.get("/api", async (req, res) => {
-  res.status(200).json({ message: "Hello World" });
-});
+app.use("/api", apiRoutes);
+app.use("/api/products", productRoutes);
 
 // Gestion des erreurs
 app.use((req, res) => {

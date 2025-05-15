@@ -7,23 +7,23 @@ export async function createUsers() {
     const jane = await User.findOne({ email: "jane@example.com" });
 
     if (!john) {
-      await User.create({
+      const newJohn = await User.create({
         name: "John Doe",
         email: "john@example.com",
         password: bcrypt.hashSync("123456", 10),
         role: "user",
       });
-      console.log("Users created : John Doe");
+      console.log("Created User : ", newJohn.name);
     }
 
     if (!jane) {
-      await User.create({
+      const newJane = await User.create({
         name: "Jane Doe",
         email: "jane@example.com",
         password: bcrypt.hashSync("123456", 10),
         role: "user",
       });
-      console.log("Users created : Jane Doe");
+      console.log("Created User : ", newJane.name);
     }
   } catch (err) {
     console.log(err);

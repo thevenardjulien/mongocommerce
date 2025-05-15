@@ -11,7 +11,7 @@ export async function createAdminUser() {
         password: bcrypt.hashSync("admin", 10),
         role: "admin",
       });
-      console.log("Admin user created");
+      console.log("Created admin : ", admin.name);
     }
   } catch (error) {
     console.log(error);
