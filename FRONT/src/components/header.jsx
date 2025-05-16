@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function Header() {
 
     const isConnected = Cookies.get("isConnected");
-    const isAdmin = true;
+    const isAdmin = Cookies.get('isAdmin');
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -61,7 +61,7 @@ export default function Header() {
                                     Logout
                                 </a>
                             }
-                            {isConnected && isAdmin &&
+                            {isConnected && isAdmin === "true" &&
                                 <a
                                     href="/admin"
                                     className="text-white hover:scale-105"

@@ -25,6 +25,24 @@ export async function Login(req, res) {
         sameSite: "lax",
         secure: false,
       });
+      console.log(user.role);
+      const isAdmin = user.role === "admin";
+      console.log(isAdmin);
+      if (isAdmin) {
+        res.cookie("isAdmin", "true", {
+          httpOnly: false,
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+          sameSite: "lax",
+          secure: false,
+        });
+      } else {
+        res.cookie("isAdmin", "false", {
+          httpOnly: false,
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+          sameSite: "lax",
+          secure: false,
+        });
+      }
       return res
         .status(200)
         .json({ message: "Authentification réussie", token });
