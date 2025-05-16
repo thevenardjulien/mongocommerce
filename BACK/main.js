@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import express from "express";
 import cors from "cors";
-import { dirname, sep } from "path";
+import path, { dirname, sep } from "path";
 import { fileURLToPath } from "url";
 import process from "process";
 import { createAdminUser } from "./seeders/createAdminUser.js";
@@ -39,7 +39,9 @@ const cfg = {
   port: process.env.APP_PORT || process.argv[2] || 7777,
   dir: {
     root: __dirname,
-    public: __dirname + "public" + sep,
+    public: path.join(__dirname, "public"),
+    uploads: path.join(__dirname, "uploads"),
+    uploadsProducts: path.join(__dirname, "uploads/products"),
   },
 };
 
@@ -52,6 +54,8 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.static(cfg.dir.public));
+app.use(express.static(cfg.dir.uploads));
+app.use(express.static(cfg.dir.uploadsProducts));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

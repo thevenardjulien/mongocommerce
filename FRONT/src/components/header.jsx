@@ -1,9 +1,10 @@
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-export default function Header() {  
+export default function Header() {
 
     const isConnected = Cookies.get("isConnected");
+    const isAdmin = true;
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -58,6 +59,14 @@ export default function Header() {
                                     onClick={handleLogout}
                                 >
                                     Logout
+                                </a>
+                            }
+                            {isConnected && isAdmin &&
+                                <a
+                                    href="/admin"
+                                    className="text-white hover:scale-105"
+                                >
+                                    Admin
                                 </a>
                             }
                         </nav>

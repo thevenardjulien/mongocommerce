@@ -7,3 +7,11 @@ export const fetchProducts = async () => {
         return data;
     }
 };
+
+export const fetchCreateProduct = async (formData) => {
+    const response = await fetch("http://localhost:3000/api/products/create", {
+        method: "POST",
+        body: formData
+    });
+    return response;
+};

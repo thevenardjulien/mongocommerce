@@ -1,4 +1,3 @@
-import { create } from "domain";
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
@@ -38,7 +37,8 @@ const ProductSchema = new Schema({
   },
   rating: {
     type: Number,
-    required: true,
+    required: false,
+    default: undefined,
     min: 1,
     max: 5,
   },
