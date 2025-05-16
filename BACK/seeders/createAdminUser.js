@@ -10,8 +10,9 @@ export async function createAdminUser() {
         email: "admin@admin.fr",
         password: bcrypt.hashSync("admin", 10),
         role: "admin",
+      }).then((user) => {
+        console.log("Created Admin User : ", user.name);
       });
-      console.log("Created admin : ", admin.name);
     }
   } catch (error) {
     console.log(error);

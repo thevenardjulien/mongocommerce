@@ -13,7 +13,7 @@ export async function Login(req, res) {
     }
     if (bcrypt.compareSync(password, user.password)) {
       const token = generateToken(user.name, user.email);
-      res.cookie("connect.sid", token, {
+      res.cookie("mongocommercesid", token, {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 7,
         sameSite: "lax",
@@ -67,7 +67,7 @@ export function Logout(req, res) {
       console.log("Erreur lors de la destruction de la session:", err);
       return res.redirect("/");
     }
-    res.clearCookie("connect.sid");
+    res.clearCookie("mongocommercesid");
     res.redirect("/auth/login");
   });
 }
