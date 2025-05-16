@@ -25,7 +25,6 @@ export async function Login(req, res) {
         sameSite: "lax",
         secure: false,
       });
-      console.log(user.role);
       const isAdmin = user.role === "admin";
       console.log(isAdmin);
       if (isAdmin) {

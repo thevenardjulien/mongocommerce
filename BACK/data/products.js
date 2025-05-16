@@ -1,7 +1,7 @@
 export const products = [
   {
     name: "Écouteurs sans fil Bluetooth Airpods",
-    image: "/images/airpods.jpg",
+    image: "/airpods.jpg",
     description:
       "La technologie Bluetooth vous permet de le connecter sans fil à des appareils compatibles. Le son AAC de haute qualité offre une expérience d'écoute immersive.Le microphone intégré vous permet de prendre des appels tout en travaillant.",
     brand: "Apple",
@@ -13,7 +13,7 @@ export const products = [
   },
   {
     name: "iPhone 11 Pro 256 Go",
-    image: "/images/phone.jpg",
+    image: "/phone.jpg",
     description:
       "Découvrez l'iPhone 11 Pro.Un système de triple caméra révolutionnaire qui ajoute des fonctionnalités sans complexité.Un bond en avant sans précédent en matière de durée de batterie.",
     brand: "Apple",
@@ -25,7 +25,7 @@ export const products = [
   },
   {
     name: "Appareil photo reflex numérique Canon EOS 80D",
-    image: "/images/camera.jpg",
+    image: "/camera.jpg",
     description:
       "Caractérisé par des spécifications d'imagerie polyvalentes, le Canon EOS 80D se distingue encore davantage grâce à une paire de systèmes de mise au point robustes et une conception intuitive.",
     brand: "Canon",
@@ -37,7 +37,7 @@ export const products = [
   },
   {
     name: "Console de jeu Sony Playstation 4 Pro version blanche",
-    image: "/images/playstation.jpg",
+    image: "/playstation.jpg",
     description:
       "Le centre de divertissement à domicile ultime commence avec la PlayStation. Que vous soyez un joueur, que vous aimiez les films HD, la télévision ou la musique.",
     brand: "Sony",
@@ -49,7 +49,7 @@ export const products = [
   },
   {
     name: "Souris de jeu Logitech série G",
-    image: "/images/mouse.jpg",
+    image: "/mouse.jpg",
     description:
       "Obtenez une meilleure prise en main de vos jeux avec cette souris de jeu Logitech LIGHTSYNC. Les six boutons programmables permettent une personnalisation pour une expérience de jeu fluide.",
     brand: "Logitech",
@@ -61,7 +61,7 @@ export const products = [
   },
   {
     name: "Amazon Echo Dot 3ème génération",
-    image: "/images/alexa.jpg",
+    image: "/alexa.jpg",
     description:
       "Rencontrez Echo Dot - notre haut-parleur intelligent le plus populaire avec un design en tissu. C'est notre haut-parleur intelligent le plus compact qui s'adapte parfaitement aux petits espaces.",
     brand: "Amazon",

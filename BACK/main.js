@@ -56,6 +56,7 @@ app.use(cookieParser());
 app.use(express.static(cfg.dir.public));
 app.use(express.static(cfg.dir.uploads));
 app.use(express.static(cfg.dir.uploadsProducts));
+app.use("/images", express.static(cfg.dir.uploadsProducts));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -66,6 +67,9 @@ app.use((req, res, next) => {
 });
 
 // Routes
+app.get("/", (req, res) => {
+  res.send("Hello - mongoCommerce - Loki");
+});
 app.use("/api", apiRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
