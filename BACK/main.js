@@ -7,6 +7,7 @@ import process from "process";
 import { createAdminUser } from "./seeders/createAdminUser.js";
 import { createUsers } from "./seeders/createUsers.js";
 import { createProducts } from "./seeders/productsSeeders.js";
+import cookieParser from "cookie-parser";
 
 // Import des routeurs
 import { apiRoutes } from "./routes/apiRoute.js";
@@ -42,11 +43,18 @@ const cfg = {
   },
 };
 
-// Cors, Static files, Middlewares de base
-app.use(cors());
+// Cors, Cookies, Static files, Json, encodage URL
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
+app.use(cookieParser());
 app.use(express.static(cfg.dir.public));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 // Debug middleware
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);

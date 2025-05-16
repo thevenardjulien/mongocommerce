@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Layout from "../layout";
 import { fetchRegister } from "../api/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -24,6 +28,7 @@ export default function Register() {
     await fetchRegister(form.name, form.email, form.password)
     .then((data) => {
       setMessage(data.message);
+      navigate("/login");
     })
     .catch((error) => {
       console.log(error);

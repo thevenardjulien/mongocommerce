@@ -1,20 +1,41 @@
 import bcrypt from "bcrypt";
 import { User } from "../models/UserModel.js";
+import { generateToken } from "../utils/generateToken.js";
 
 export async function Login(req, res) {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(400).json({ message: "Email ou mot de passe incorrect" });
+      return res
+        .status(400)
+        .json({ message: "Email ou mot de passe incorrect" });
+    }
+    if (bcrypt.compareSync(password, user.password)) {
+      const token = generateToken(user.name, user.email);
+      res.cookie("connect.sid", token, {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        sameSite: "lax",
+        secure: false,
+      });
+      res.cookie("isConnected", "true", {
+        httpOnly: false,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        sameSite: "lax",
+        secure: false,
+      });
+      return res
+        .status(200)
+        .json({ message: "Authentification réussie", token });
     } else {
-      if (bcrypt.compareSync(password, user.password)) {
-        // JWT
-        res.status(200).json({ message: "Authentification réussie" });
-      }
+      return res
+        .status(400)
+        .json({ message: "Email ou mot de passe incorrect" });
     }
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ message: "Erreur serveur" });
   }
 }
 

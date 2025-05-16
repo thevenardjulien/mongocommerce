@@ -1,8 +1,15 @@
 import { useState } from "react";
+import { useStore } from "../store/userStore";
 import Layout from "../layout";
 import { fetchLogin } from "../api/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+
+  const setToken = useStore((state) => state.setToken)
+
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: ""
@@ -21,15 +28,17 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetchLogin(form.email, form.password)
-    .then((data) => {
-      setMessage(data.message);
-    })
-    .catch((error) => {
-      console.log(error);
-      setMessage("Something went wrong");
-    });
+    const response = await fetchLogin(form.email, form.password);
+    if(response.message && response.message === "Authentification réussie") {
+      setMessage(response.message);
+      setToken(response.token);
+      navigate("/");
+    } else {
+      setMessage(response.message || "Something went wrong");
+      console.log(response);
+    }
   };
+  
 
   return (
     <Layout>
